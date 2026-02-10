@@ -1,6 +1,6 @@
 export function createRenderer(canvas) {
   const ctx = canvas.getContext('2d');
-  const CELL_SIZE = 20;
+  const CELL_SIZE = 12;
   const TICK_MS = 100;
 
   let cameraX = 0;
@@ -175,12 +175,14 @@ export function createRenderer(canvas) {
       case 'left':  e1 = [px + s*0.3, py + s*0.3]; e2 = [px + s*0.3, py + s*0.7]; break;
       case 'right': e1 = [px + s*0.7, py + s*0.3]; e2 = [px + s*0.7, py + s*0.7]; break;
     }
-    ctx.beginPath(); ctx.arc(e1[0], e1[1], 3, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.arc(e2[0], e2[1], 3, 0, Math.PI * 2); ctx.fill();
+    const eyeR = CELL_SIZE * 0.15;
+    const pupilR = eyeR * 0.5;
+    ctx.beginPath(); ctx.arc(e1[0], e1[1], eyeR, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(e2[0], e2[1], eyeR, 0, Math.PI * 2); ctx.fill();
     // Pupils
     ctx.fillStyle = '#000000';
-    ctx.beginPath(); ctx.arc(e1[0], e1[1], 1.5, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.arc(e2[0], e2[1], 1.5, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(e1[0], e1[1], pupilR, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(e2[0], e2[1], pupilR, 0, Math.PI * 2); ctx.fill();
   }
 
   function adjustBrightness(hex, factor) {
