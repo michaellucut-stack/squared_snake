@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake Arena</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="join-screen">
+    <h1>Snake Arena</h1>
+    <input type="text" id="name-input" maxlength="20" placeholder="Enter your name" autofocus>
+    <div id="control-picker" style="display:none;">
+      <span class="picker-label">Controls</span>
+      <div class="picker-options">
+        <label class="picker-option">
+          <input type="radio" name="controls" value="joystick" checked>
+          <span class="picker-btn">Joystick</span>
+        </label>
+        <label class="picker-option">
+          <input type="radio" name="controls" value="swipe">
+          <span class="picker-btn">Swipe</span>
+        </label>
+      </div>
+    </div>
+    <button id="play-btn">Play</button>
+  </div>
+  <canvas id="game-canvas"></canvas>
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>
