@@ -32,6 +32,8 @@ export function addSnake(state, id, name) {
     color,
     pendingDirection: null,
     deathTime: null,
+    speed: 0.3,
+    moveAccumulator: 0,
   };
 
   state.snakes.set(id, snake);
@@ -109,6 +111,8 @@ export function respawnSnake(state, id) {
   snake.alive = true;
   snake.score = 0;
   snake.deathTime = null;
+  snake.speed = 0.3;
+  snake.moveAccumulator = 0;
 }
 
 function hashCode(str) {

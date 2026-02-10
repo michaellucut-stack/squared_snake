@@ -16,9 +16,13 @@ export function createGameEngine(state, broadcastFn) {
       }
     }
 
-    // 2. Move alive snakes
+    // 2. Move alive snakes (speed accumulator: only move when >= 1.0)
     for (const snake of state.snakes.values()) {
       if (!snake.alive) continue;
+
+      snake.moveAccumulator += snake.speed;
+      if (snake.moveAccumulator < 1.0) continue;
+      snake.moveAccumulator -= 1.0;
 
       const head = snake.segments[0];
       let newX = head[0];
@@ -49,6 +53,7 @@ export function createGameEngine(state, broadcastFn) {
         if (state.food[i][0] === hx && state.food[i][1] === hy) {
           snake.growing = true;
           snake.score++;
+          snake.speed += 0.05;
           GameState.removeFood(state, i);
           GameState.spawnFood(state, 1);
           break;
